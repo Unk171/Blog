@@ -37,37 +37,6 @@ const delButtonHandler = async (event) => {
   }
 };
 
-const addCommentButton = async (event) => {
-  event.preventDefault();
-  console.log("////////////////////////////////////////////////")
-  const post_id = window.location.toString().split('/')[
-     window.location.toString().split('/').length - 1];
-
-  console.log("post_id:", post_id, "???????????????????????????????????????????????????");
-
-
-  const commentText = document.querySelector("#commentContent").value.trim();
-
-  console.log("commentText:", commentText)
-  
-  if (commentText) {
-    const response = await fetch(`/api/posts/${post_id}`, {
-      method: "POST",
-      body: JSON.stringify({commentText, post_id}),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    
-    if (response.ok) {
-      console.log("response:", response);
-      document.location.replace("/dashboard");
-    } else {
-      alert("Failed to create comment");
-    }
-  }
-};
-
 
 document
   .querySelector(".new-post-form")
@@ -76,7 +45,4 @@ document
 document
   .querySelector(".post-list")
   .addEventListener("click", delButtonHandler);
-console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-document
-  .querySelector(".comment-form")
-  .addEventListener("submit", addCommentButton);
+
